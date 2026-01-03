@@ -1,0 +1,25 @@
+schemaVersion: 1.2
+endpoints:
+  - name: FastAPI Endpoint
+    displayName: FastAPI Endpoint
+    service:
+      basePath: /
+      port: 8080
+      type: REST
+    networkVisibilities:
+      - Public
+dependencies:
+  serviceReferences:
+    - name: database:my-mysql-db  # Use the display name of your MySQL resource
+      connectionConfig: MySQL_CONN_ID # Choreo provides this when you link the resource
+      env:
+        - from: HostName
+          to: MYSQL_HOST
+        - from: Port
+          to: MYSQL_PORT
+        - from: Username
+          to: MYSQL_USER
+        - from: Password
+          to: MYSQL_PASSWORD
+        - from: DatabaseName
+          to: MYSQL_DATABASE
